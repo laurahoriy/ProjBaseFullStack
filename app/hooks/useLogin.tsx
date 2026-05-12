@@ -6,7 +6,7 @@ import api from '../lib/api';
 import Cookies from 'js-cookie';
 
 export function useLogin() {
-  const router = useRouter();
+  const router = useRouter(); //navegar entre pastas, sempre vai ser do navigation
 
   // Estados simples e separados, iguais aos do cadastro de produtos
   const [username, setUsername] = useState('');

@@ -24,8 +24,8 @@ export default function Home() {
             <input
               type="text"
               placeholder="Digite seu Usuário"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)} // Atualiza apenas o username
+              value={username} //obrigatorio
+              onChange={(e) => setUsername(e.target.value)} // Atualiza apenas o username, obrigatorio
               className="input-field"
               required
             />
