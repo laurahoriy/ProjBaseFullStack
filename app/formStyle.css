@@ -14,7 +14,7 @@
     background-color: #ffffff;
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(215, 37, 141, 0.1);
     width: 350px;
     text-align: center;
 }
@@ -32,7 +32,7 @@
 .input-field {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #ed84d1;
     border-radius: 5px;
     font-size: 16px;
     box-sizing: border-box; 
@@ -40,14 +40,14 @@
 }
 
 .input-field:focus {
-    border-color: #007bff;
+    border-color: #ff00bfb8;
 }
 
 /* Botão de Entrar */
 .btn-login {
     width: 100%;
     padding: 12px;
-    background-color: #007bff;
+    background-color: #ff00b3;
     color: white;
     border: none;
     border-radius: 5px;
@@ -58,7 +58,7 @@
 }
 
 .btn-login:hover {
-    background-color: #0056b3;
+    background-color: #da1d9b;
 }
 
 /* Link para cadastro */
@@ -68,7 +68,7 @@
 }
 
 .footer-link a {
-    color: #007bff;
+    color: #dc178d;
     text-decoration: none;
     font-weight: bold;
 }

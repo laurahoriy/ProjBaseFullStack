@@ -1,2 +1,169 @@
 @import "tailwindcss";
 
+.bb-body {
+  background: linear-gradient(180deg, rgba(255, 241, 247, 1), rgba(255, 227, 241, 0.9));
+  color: var(--bb-ink);
+}
+
+
+:root {
+  --bb-pink-50: #fff1f7;
+  --bb-pink-100: #ffe3f1;
+  --bb-pink-300: #ff7db7;
+  --bb-pink-500: #ff3ea0;
+  --bb-pink-700: #c11f73;
+  --bb-ink: #2b2b2b;
+}
+
+.bb-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: linear-gradient(90deg, var(--bb-pink-50), var(--bb-pink-100));
+  border-bottom: 1px solid rgba(255, 62, 160, 0.25);
+}
+
+.bb-nav__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bb-nav__brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.bb-nav__logo {
+  font-weight: 900;
+  color: var(--bb-pink-700);
+  letter-spacing: 0.5px;
+}
+
+.bb-nav__title {
+  font-weight: 800;
+  color: var(--bb-ink);
+}
+
+.bb-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.bb-nav__link {
+  color: var(--bb-ink);
+  text-decoration: none;
+  font-weight: 700;
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+
+.bb-nav__link:hover {
+  background: rgba(255, 62, 160, 0.12);
+}
+
+.bb-nav__button {
+  border: none;
+  cursor: pointer;
+  font-weight: 800;
+  color: white;
+  padding: 9px 14px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--bb-pink-500), var(--bb-pink-700));
+  transition: transform 0.05s ease, filter 0.15s ease;
+}
+
+.bb-nav__button:hover {
+  filter: brightness(1.05);
+}
+
+.bb-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 22px 18px;
+  width: 100%;
+}
+
+.bb-page__title {
+  font-size: 28px;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.bb-page__subtitle {
+  color: rgba(0, 0, 0, 0.65);
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+
+.bb-card {
+  background: white;
+  border: 1px solid rgba(255, 62, 160, 0.18);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 6px 22px rgba(255, 62, 160, 0.08);
+}
+
+.bb-card__title {
+  font-size: 18px;
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+
+.bb-card__text {
+  color: rgba(0, 0, 0, 0.65);
+  font-weight: 600;
+}
+
+.bb-actions {
+  margin-top: 14px;
+}
+
+.bb-btn {
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 900;
+  cursor: pointer;
+  border: 1px solid rgba(255, 62, 160, 0.35);
+  background: transparent;
+}
+
+.bb-btn--ghost {
+  color: var(--bb-pink-700);
+}
+
+@media (max-width: 720px) {
+  .bb-nav__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .bb-nav__links {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+/* barra totalmente rosa (força links e textos a ficarem em tons de rosa) */
+.bb-nav__link {
+  color: var(--bb-pink-700) !important;
+}
+
+.bb-nav__brand,
+.bb-nav__title {
+  color: var(--bb-pink-700) !important;
+}
+
+.bb-nav__logo {
+  color: var(--bb-pink-700) !important;
+}
+
+
+
