@@ -5,71 +5,86 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    font-family: Arial, sans-serif;
-    background-color: #f4f7f6;
+    font-family: "Inter", "Segoe UI", sans-serif;
+    font-weight: 400;
+    background-color: #eef2f5;
+    padding: 24px;
 }
 
 /* O "Card" branco do formulário */
 .login-card {
     background-color: #ffffff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(215, 37, 141, 0.1);
-    width: 350px;
-    text-align: center;
+    padding: 42px 36px;
+    border-radius: 18px;
+    box-shadow: 0 12px 28px rgba(17, 38, 63, 0.08);
+    width: min(420px, 100%);
+    text-align: left;
+    border: 1px solid #d1d7dd;
 }
 
 .login-card h1 {
-    margin-bottom: 25px;
-    color: #333;
+    margin-bottom: 24px;
+    color: #11263f;
+    font-size: 1.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
 }
 
 /* Campos de digitação */
 .input-group {
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
 .input-field {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ed84d1;
-    border-radius: 5px;
-    font-size: 16px;
-    box-sizing: border-box; 
+    padding: 14px 16px;
+    border: 1px solid #c7d1da;
+    border-radius: 12px;
+    font-size: 1rem;
+    color: #102a3f;
+    background: #fafbfc;
     outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .input-field:focus {
-    border-color: #ff00bfb8;
+    border-color: #18518b;
+    box-shadow: 0 0 0 4px rgba(24, 81, 139, 0.12);
 }
 
 /* Botão de Entrar */
 .btn-login {
     width: 100%;
-    padding: 12px;
-    background-color: #ff00b3;
-    color: white;
+    padding: 14px 16px;
+    background-color: #153e71;
+    color: #ffffff;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.25s ease, transform 0.15s ease;
 }
 
 .btn-login:hover {
-    background-color: #da1d9b;
+    background-color: #0f3560;
+    transform: translateY(-1px);
 }
 
 /* Link para cadastro */
 .footer-link {
-    margin-top: 20px;
-    font-size: 14px;
+    margin-top: 22px;
+    font-size: 0.95rem;
+    color: #475b72;
 }
 
 .footer-link a {
-    color: #dc178d;
+    color: #18518b;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 700;
+}
+
+.footer-link a:hover {
+    text-decoration: underline;
 }
 

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Projeto Login",
-  description: "1o app no back",
+  title: "Portal de Acesso",
+  description: "Sistema de login e área administrativa com visual corporativo.",
 };
 
 export default function RootLayout({
@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <body className="min-h-full flex flex-col bb-body">{children}</body>
     </html>
   );
