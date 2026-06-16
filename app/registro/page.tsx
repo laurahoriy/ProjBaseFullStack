@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useRegister } from '../hooks/useRegister';
 import '../formStyle.css';
 
@@ -74,11 +73,6 @@ export default function Registro() {
             Cadastrar
           </button>
         </form>
-
-        <div className="footer-link">
-          <span>Já tem conta? </span>
-          <Link href="/">Voltar ao login</Link>
-        </div>
       </div>
     </div>
   );

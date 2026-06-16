@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, FormEvent } from 'react';
+import axios from 'axios';
 import api from '../lib/api';
 import { Produto } from '../types/produto';
 import { useRouter } from 'next/navigation';
@@ -23,12 +24,23 @@ export function useProdutos() {
         try {
             const resposta = await api.get('/produtos/');
             setProdutos(resposta.data);
-        } catch (error) {
-            alert("Erro ao buscar produtos");
+        } catch (error: unknown) {
+            console.error('Erro ao buscar produtos.', error);
         } finally {
             setLoading(false);
         }
     }, []);
+
+    const buscarProdutoPorId = async (id: number) => {
+        try {
+            const resposta = await api.get(`/produtos/${id}`);
+            prepararEdicao(resposta.data);
+        } catch (error: unknown) {
+            console.error('Erro ao buscar os detalhes do produto.', error);
+            alert("Erro ao buscar os detalhes do produto.");
+            router.push('/dashboard');
+        }
+    };
 
     // POST / PUT - Salvar
     const salvar = async (e: FormEvent<HTMLFormElement>) => {
@@ -40,11 +52,13 @@ export function useProdutos() {
             return;
         }
 
+        const urlTrimmed = url.trim().slice(0, 255);
+
         const dados: Produto = {
             nome: nome.trim(),
             descricao: descricao.trim(),
             preco: precoFormatado,
-            url: url.trim(),
+            url: urlTrimmed,
         };
 
         try {
@@ -56,10 +70,12 @@ export function useProdutos() {
 
             limparFormulario();
             alert('Produto salvo com sucesso!');
-            router.push('/dashboard');
-        } catch (error: any) {
+            router.push('/produtos');
+        } catch (error: unknown) {
             console.error('Erro ao salvar produto:', error);
-            const mensagem = error?.response?.data?.message || error?.message || 'Erro ao salvar o produto. Verifique os dados e tente novamente.';
+            const mensagem = axios.isAxiosError(error)
+                ? error.response?.data?.message || error.message
+                : 'Erro ao salvar o produto. Verifique os dados e tente novamente.';
             alert(`Erro ao salvar produto: ${mensagem}`);
         }
     };
@@ -70,7 +86,8 @@ export function useProdutos() {
         try {
             await api.delete(`/produtos/${id}`);
             listarProdutos();
-        } catch (error) {
+        } catch (error: unknown) {
+            console.error('Erro ao excluir produto:', error);
             alert("Erro ao excluir");
         }
     };
@@ -94,6 +111,6 @@ export function useProdutos() {
     return {
         produtos, loading, listarProdutos, salvar, excluir, prepararEdicao,
         nome, setNome, descricao, setDescricao, preco, setPreco, url, setUrl,
-        editandoId, limparFormulario
+        editandoId, limparFormulario, buscarProdutoPorId
     };
 }

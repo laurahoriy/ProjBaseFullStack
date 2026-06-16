@@ -88,3 +88,45 @@
     text-decoration: underline;
 }
 
+.bb-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+}
+
+.bb-table th,
+.bb-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #e6edf5;
+    color: #243046;
+}
+
+.bb-table th {
+    text-align: left;
+    font-weight: 700;
+    color: #153e71;
+    background: #f7fbff;
+}
+
+.bb-table tr:hover {
+    background: #f6f9fc;
+}
+
+.error-banner {
+    background: #ffe8e6;
+    color: #922b21;
+    border: 1px solid #f1c1bd;
+    padding: 14px 18px;
+    border-radius: 14px;
+    margin-bottom: 18px;
+}
+
+.success-banner {
+    background: #eaf7f0;
+    color: #1e6448;
+    border: 1px solid #bde8c8;
+    padding: 14px 18px;
+    border-radius: 14px;
+    margin-bottom: 18px;
+}
+

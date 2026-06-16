@@ -1,44 +1,29 @@
 'use client';
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie"; // Importamos a biblioteca
+import Cookies from "js-cookie";
 import { useProdutos } from "../hooks/useProduto";
 import NavBar from "../Components/Navbar";
 
 export default function Dashboard() {
     const router = useRouter();
-    const [name, setName] = useState("");
-    const {
-            produtos, loading, listarProdutos, excluir, prepararEdicao,
-        } = useProdutos();
-    
+    const [name] = useState(() => Cookies.get("userName") || "");
+    const { produtos, loading, listarProdutos, excluir } = useProdutos();
+
     useEffect(() => {
         listarProdutos();
     }, [listarProdutos]);
 
     useEffect(() => {
-        const userName = Cookies.get("userName");
-        
-        if (userName) {
-            setName(userName);
-        } else {
-            // Caso o cookie suma por algum motivo, volta para o login
+        if (!Cookies.get("userName")) {
             router.push("/");
         }
     }, [router]);
 
-    function logout() {
-        Cookies.remove("logged");
-        Cookies.remove("userName");
-        router.push("/");
-    }
-
     return (
         <div>
             <NavBar />
-            <div className="login-card" style={{ width: '100%', padding: '40px', maxWidth: '1120px', margin: '24px auto' }}>
-                <h1 className="bb-page__title">Seja bem-vindo, {name || 'Visitante'}!</h1>
-                <p className="bb-page__subtitle">Esta é uma área protegida.</p>
+            <div className="login-card" style={{ width: '100%', padding: '60px' }}>
                 <h2>Produtos Cadastrados</h2>
                 {loading ? <p>Carregando...</p> : (
                     <table style={{ width: '100%', marginTop: '20px', borderCollapse: 'collapse' }}>
@@ -46,6 +31,8 @@ export default function Dashboard() {
                             <tr style={{ borderBottom: '2px solid #eee' }}>
                                 <th style={{ textAlign: 'left', padding: '10px' }}>Nome</th>
                                 <th style={{ textAlign: 'left', padding: '10px' }}>Preço</th>
+                                {/* Nova Coluna de Estoque */}
+                                <th style={{ textAlign: 'center', padding: '10px' }}>Estoque</th>
                                 <th style={{ textAlign: 'center', padding: '10px' }}>Ações</th>
                             </tr>
                         </thead>
@@ -54,13 +41,39 @@ export default function Dashboard() {
                                 <tr key={p.id} style={{ borderBottom: '1px solid #eee' }}>
                                     <td style={{ padding: '10px' }}>{p.nome}</td>
                                     <td style={{ padding: '10px' }}>R$ {(Number(p.preco) || 0).toFixed(2)}</td>
+
+                                    {/* Mostra a quantidade. Se a sua API Spring devolver o estoque aninhado (p.estoque.quantidade), ele mostra aqui. */}
+                                    <td style={{ padding: '10px', textAlign: 'center', fontWeight: 'bold' }}>
+                                        {p.estoque ? p.estoque.quantidade : 0} unid.
+                                    </td>
+
                                     <td style={{ padding: '10px', textAlign: 'center' }}>
-                                        <button onClick={() => prepararEdicao(p)} 
-                                                style={{ marginRight: '10px', color: '#007bff', background: 'none', border: 'none', cursor: 'pointer' }}>
-                                            Editar
+
+                                        {/* Botão Alterar Estoque Atualizado */}
+                                        <button
+                                            onClick={() => {
+                                                if (p.estoque) {
+                                                    // Se já existe, vai para a rota de edição usando o ID do ESTOQUE
+                                                    router.push(`/dashboard/estoque/${p.estoque.id}`);
+                                                } else {
+                                                    // Se não existe, vai para a página de criação padrão
+                                                    router.push('/dashboard/estoque');
+                                                }
+                                            }}
+                                            style={{ marginRight: '10px', color: '#28a745', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 'bold' }}
+                                        >
+                                            Alterar Estoque
                                         </button>
-                                        <button onClick={() => excluir(p.id!)} 
-                                                style={{ color: 'red', background: 'none', border: 'none', cursor: 'pointer' }}>
+
+                                        {/* Botão Editar Produto */}
+                                        <button onClick={() => router.push(`/dashboard/produtos/${p.id}`)}
+                                            style={{ marginRight: '10px', color: '#007bff', background: 'none', border: 'none', cursor: 'pointer' }}>
+                                            Editar Prod.
+                                        </button>
+
+                                        {/* Botão Excluir Produto */}
+                                        <button onClick={() => excluir(p.id!)}
+                                            style={{ color: 'red', background: 'none', border: 'none', cursor: 'pointer' }}>
                                             Excluir
                                         </button>
                                     </td>
@@ -73,5 +86,3 @@ export default function Dashboard() {
         </div>
     );
 }
-
-
